@@ -1,6 +1,6 @@
 frr defaults traditional
 !
-ip route 10.0.0.1 255.255.255.255 eth1
+ip route 10.0.0.2 255.255.255.255 eth3
 !
 ip prefix-list MARTIAN description Martian route filter
 ip prefix-list MARTIAN seq 15 permit 10.0.0.0/8 le 32
@@ -37,8 +37,8 @@ route-map TRANSIT-ISP-OUT permit 30
  match ip address ISP-DELAY
  set as-path prepend 65001 65001 65001 65001 65001
 
-route-map TRANSIT-AS-3356-OUT permit 40
- description Lumen Prefer Inbound
+route-map TRANSIT-ISP-OUT permit 40
+ description ISP Prefer Inbound
  set as-path prepend 65001
 !
 router bgp {{ bgp.as }}
@@ -46,9 +46,12 @@ router bgp {{ bgp.as }}
 {%   for n in bgp.neighbors if n[af] is defined %}
   neighbor {{ n[af] }} remote-as {{ n.as }}
   neighbor {{ n[af] }} description {{ n.name }}
-{%   endfor %}
 {%   if loopback[af] is defined and bgp.advertise_loopback %}
   network {{ loopback[af]|ipaddr(0) }}
-  route-map
-{%   endif %}
+{% if bgp.as != n.as %}
+  neighbor {{ n[af] }} route-map TRANSIT-ISP-IN in
+  neighbor {{ n[af] }} route-map TRANSIT-ISP-OUT out
+{% endif %}
+{% endif %}
+{% endfor %}
 {% endfor %}
