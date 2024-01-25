@@ -1,12 +1,14 @@
 # Network Lab Challenge 1  
 In this scenario you have a pair of routers you administer (r1 & r2) that uplink two each other and to an ISP provider.
-Some users are reporting they can not ping google.com 
 
-![img.png](img.png)
+You have to solve for Ping not reachable between server1/2 and h3/4
+
 
 You can access all of the devices in the topology but access to the ISP Devices are not required
 
+In order to pass the challenge your solution need to pass the ``validation`` test 
 
+![img.png](img.png)
 
 ## Install Netlab 
 ```bash
@@ -36,6 +38,10 @@ You can issue commands from the cli via
 netlab connect <device name> --<show ommand>
 ```
 
+### Validate the fix 
+```bash
+netlab validate
+```
 
 
 solution 
