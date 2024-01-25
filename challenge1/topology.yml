@@ -21,11 +21,11 @@ nodes:
     loopback:
        ipv4: 10.0.0.2/32
   isp1:
-    bgp.originate: [ 0.0.0.0/0 ]
+    bgp.originate: [ 172.16.2.0/24 ]
     bgp.as: 64512
 
   isp2:
-    bgp.originate: [ 0.0.0.0/0 ]
+    bgp.originate: [ 172.16.3.0/24 ]
     bgp.as: 64513
 
   server1:

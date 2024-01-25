@@ -44,7 +44,4 @@ netlab validate
 ```
 
 
-solution 
 
-ip route 10.0.0.2 255.255.255.255 eth1
-ip route 10.0.0.1 255.255.255.255 eth1
