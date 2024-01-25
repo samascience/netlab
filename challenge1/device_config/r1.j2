@@ -24,20 +24,15 @@ route-map ISP-IN permit 30
  set metric 0
  set local-preference 120
 !
-route-map TRANSIT-ISP-OUT deny 10
+route-map ISP-OUT deny 10
  description Drop Non-Public Routable Traffic
  match ip address prefix-list MARTIAN
 
-route-map TRANSIT-ISP-OUT deny 20
+route-map ISP-OUT deny 20
  description Drop Blackhole Traffic
  match ip address prefix-list BLACKHOLE
 
-route-map TRANSIT-ISP-OUT permit 30
- description Prepend x5 Local AS Prepend
- match ip address ISP-DELAY
- set as-path prepend 65001 65001 65001 65001 65001
-
-route-map TRANSIT-ISP-OUT permit 40
+route-map ISP-OUT permit 30
  description ISP Prefer Inbound
  set as-path prepend 65001
 !
@@ -49,8 +44,8 @@ router bgp {{ bgp.as }}
 {%   if loopback[af] is defined and bgp.advertise_loopback %}
   network {{ loopback[af]|ipaddr(0) }}
 {% if bgp.as != n.as %}
-  neighbor {{ n[af] }} route-map TRANSIT-ISP-IN in
-  neighbor {{ n[af] }} route-map TRANSIT-ISP-OUT out
+  neighbor {{ n[af] }} route-map ISP-IN in
+  neighbor {{ n[af] }} route-map ISP-OUT out
 {% endif %}
 {% endif %}
 {% endfor %}
