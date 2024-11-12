@@ -9,3 +9,4 @@ apt remove moby-tini -y
 apt-get install pip -y
 pip install -r requirements.txt
 apt install graphviz
+

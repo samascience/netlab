@@ -48,12 +48,12 @@ netlab_name: challenge1
 netlab_provider: clab
 paths_collect:
   dirs:
-  - /usr/local/python/3.12.1/lib/python3.12/site-packages/netsim/ansible/tasks/fetch-config
+  - /usr/local/python/3.9.20/lib/python3.9/site-packages/netsim/ansible/tasks/fetch-config
 paths_custom:
   dirs:
   - /workspaces/netlab/challenge1
-  - /home/codespace/.netlab
-  - /usr/local/python/3.12.1/lib/python3.12/site-packages/netsim/extra
+  - /root/.netlab
+  - /usr/local/python/3.9.20/lib/python3.9/site-packages/netsim/extra
   files:
   - '{{ custom_config + ''/'' + inventory_hostname + ''.'' + netlab_device_type +
     ''-'' + node_provider + ''.j2'' }}'
@@ -85,7 +85,7 @@ paths_custom:
   - '{{ custom_config }}/deploy.yml'
 paths_deploy:
   dirs:
-  - /usr/local/python/3.12.1/lib/python3.12/site-packages/netsim/ansible/tasks
+  - /usr/local/python/3.9.20/lib/python3.9/site-packages/netsim/ansible/tasks
   files:
   - '{{ netlab_device_type }}/{{ config_module }}-{{ provider|default(netlab_provider)
     }}.yml'
@@ -104,11 +104,11 @@ paths_deploy:
   - deploy-config/{{ ansible_network_os }}.yml
 paths_plugin:
 - /workspaces/netlab/challenge1
-- /home/codespace/.netlab
-- /usr/local/python/3.12.1/lib/python3.12/site-packages/netsim/extra
+- /root/.netlab
+- /usr/local/python/3.9.20/lib/python3.9/site-packages/netsim/extra
 paths_ready:
   dirs:
-  - /usr/local/python/3.12.1/lib/python3.12/site-packages/netsim/ansible/tasks/readiness-check
+  - /usr/local/python/3.9.20/lib/python3.9/site-packages/netsim/ansible/tasks/readiness-check
   files:
   - '{{netlab_device_type}}-{{provider|default(netlab_provider)}}.yml'
   - '{{netlab_device_type}}.yml'
@@ -125,10 +125,10 @@ paths_t_files:
   - '{{netlab_device_type}}/{{config_module}}.j2'
 paths_templates:
   dirs:
-  - /usr/local/python/3.12.1/lib/python3.12/site-packages/netsim/ansible/templates
-  - /usr/local/python/3.12.1/lib/python3.12/site-packages/netsim/daemons
+  - /usr/local/python/3.9.20/lib/python3.9/site-packages/netsim/ansible/templates
+  - /usr/local/python/3.9.20/lib/python3.9/site-packages/netsim/daemons
 paths_validate:
-- /usr/local/python/3.12.1/lib/python3.12/site-packages/netsim/validate
+- /usr/local/python/3.9.20/lib/python3.9/site-packages/netsim/validate
 pools:
   l2only: {}
   lan:
