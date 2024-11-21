@@ -24,7 +24,7 @@ cd challenge1
 
 ## Bring up the lab
 ```bash
-netplan up
+netlab up
 ```
 
 ## Confirm the lab is up
